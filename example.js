@@ -1,14 +1,20 @@
 var table = require('./index');
 
-
+// Array of objects
 console.table([{a:1, b:2, c: function(){}}, {a:"foo", b:false, c:undefined}]);
-console.table([[1,2,3], [2,3,4]]);
+
+// Array of arrays
+var people = [["John", "Smith"], ["Jane", "Doe"], ["Emily", "Jones"]]
+console.table(people);
+
+// Limiting columns
 console.table([
 	{ firstName: 'Kushagra', lastName: 'Gour' },
 	{ firstName: 'John', lastName: 'Doe' }
 ], ['firstName']);
 
 
+// Passing object instead of array
 function Person(firstName, lastName, age) {
   this.firstName = firstName;
   this.lastName = lastName;
