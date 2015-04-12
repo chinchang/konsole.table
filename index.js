@@ -108,9 +108,9 @@ function printRows (rows) {
 	console.log(repeatChar(tableWidth, '='))
 }
 
-function printTable(data) {
+function printTable(data, keys) {
 	var i, j, rows = [], row, entry;
-	var keys = Object.keys(data[0]);
+	keys = keys || Object.keys(data[0]);
 	keys.sort();
 
 	// Create header row.
@@ -134,7 +134,7 @@ function printTable(data) {
 	printRows(rows);
 }
 
-console.table = console.table || function(data) {
-	printTable(data);
+console.table = console.table || function(data, keys) {
+	printTable(data, keys);
 }
 
