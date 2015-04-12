@@ -1,6 +1,6 @@
 log-table
 =====
-*console.table API polyfill for node*
+*console.table API polyfill for Node.js*
 ***
 
 **log-table** adds `console.table` support in node so your same code can run in nnode and in browser.
@@ -10,7 +10,7 @@ The aim of this module is exactly replicate `console.table` API in browsers.
 Installation
 -----
 
-`npm install log-table`
+`npm install konsole.table`
 
 Usage
 -----
