@@ -1,0 +1,17 @@
+{
+  "name": "konsole.table",
+  "version": "0.1.0",
+  "description": "console.table polyfill for Node.js",
+  "main": "index.js",
+  "repository": "chinchang/konsole.table",
+  "keywords": [
+    "table",
+    "log",
+    "console"
+  ],
+  "author": "Kushagra Gour",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "~1.0.0"
+  }
+}
