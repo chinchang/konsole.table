@@ -109,9 +109,26 @@ function printRows (rows) {
 }
 
 function printTable(data, keys) {
-	var i, j, rows = [], row, entry;
-	keys = keys || Object.keys(data[0]);
-	keys.sort();
+	var i, j, rows = [], row, entry,
+		objKeys,
+		tempData;
+
+	// If an object was passed, create data from its properties instead.
+	if (!(data instanceof Array)) {
+		tempData = [];
+		// `objKeys` are now used to index every row.
+		objKeys = Object.keys(data);
+		for (var key in data) {
+			tempData.push(data[key]);
+		}
+		data = tempData;
+	}
+	
+	// Get the keys from first data entry if custom keys are not passed.
+	if (!keys) {
+		keys = Object.keys(data[0]);
+		keys.sort();
+	}
 
 	// Create header row.
 	rows.push([]);
@@ -125,7 +142,7 @@ function printTable(data, keys) {
 		entry = data[j]
 		rows.push([]);
 		row = rows[rows.length - 1];
-		row.push(j);
+		row.push(objKeys ? objKeys[j] : j);
 		for (i = 0; i < keys.length; i++) {
 			row.push(entry[keys[i]]);
 		}
