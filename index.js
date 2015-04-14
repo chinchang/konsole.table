@@ -8,7 +8,7 @@ var SEPARATOR = '│';
  * @param  {string} str    Character(s) to repeat
  * @return {string}        Repeated string.
  */
-function repeatChar(amount, str) {
+function repeatString(amount, str) {
 	str = str || ' ';
 	return Array.apply(0, Array(amount)).join(str);
 }
@@ -20,8 +20,7 @@ function repeatChar(amount, str) {
  * @return {string}                Formatted value.
  */
 function getFormattedString(value, isHeaderValue) {
-	if (isHeaderValue) {
-	}
+	if (isHeaderValue) {}
 	else if (typeof value === 'string') {
 		// Wrap strings in inverted commans.
 		return '"' + value + '"';
@@ -41,9 +40,7 @@ function getFormattedString(value, isHeaderValue) {
  */
 function getColoredAndFormattedString(value, isHeaderValue) {
 	var colorFn;
-	//console.log(value, typeof value, isHeaderValue)
-	if (isHeaderValue) {
-	}
+	if (isHeaderValue) {}
 	else if (typeof value === 'number' || typeof value === 'boolean') {
 		 colorFn = chalk.blue;
 	}
@@ -74,9 +71,7 @@ function printRows (rows) {
 	for (j = 0; j < numCols; j++) {
 		maxLengthForColumn = 0;
 		for (i = 0; i < rows.length; i++) {
-			if (getFormattedString(rows[i][j], !i || !j).length > maxLengthForColumn) {
-				maxLengthForColumn = getFormattedString(rows[i][j], !i || !j).length;
-			}
+			maxLengthForColumn = Math.max(getFormattedString(rows[i][j], !i || !j).length, maxLengthForColumn);
 		}
 		// Give some more padding to biggest string.
 		maxLengthForColumn += 4;
@@ -85,14 +80,15 @@ function printRows (rows) {
 		// Give padding to rows for current column.
 		for (i = 0; i < rows.length; i++) {
 			padding = maxLengthForColumn - getFormattedString(rows[i][j], !i || !j).length;
-			rows[i][j] = ' ' + getColoredAndFormattedString(rows[i][j], !i || !j) + repeatChar(padding - 1);
+			// Distribute padding - 1 in starting, rest at the end.
+			rows[i][j] = ' ' + getColoredAndFormattedString(rows[i][j], !i || !j) + repeatString(padding - 1);
 		}
 	}
 
 	// HACK: Increase table width just by 1 to make it look good.
 	tableWidth += 1;
 
-	console.log(repeatChar(tableWidth, '='))
+	console.log(repeatString(tableWidth, '='))
 	for (i = 0; i < rows.length; i++) {
 		row = rows[i];
 		rowString = '';
@@ -102,10 +98,10 @@ function printRows (rows) {
 		console.log(rowString);
 		// Draw border after table header.
 		if (!i) {
-			console.log(repeatChar(tableWidth, '-'))
+			console.log(repeatString(tableWidth, '-'))
 		}
 	}
-	console.log(repeatChar(tableWidth, '='))
+	console.log(repeatString(tableWidth, '='))
 }
 
 function printTable(data, keys) {
@@ -119,6 +115,8 @@ function printTable(data, keys) {
 		// `objKeys` are now used to index every row.
 		objKeys = Object.keys(data);
 		for (var key in data) {
+			// Avoiding `hasOwnProperty` check because Chrome shows prototype properties
+			// as well.
 			tempData.push(data[key]);
 		}
 		data = tempData;
@@ -135,13 +133,14 @@ function printTable(data, keys) {
 	row = rows[rows.length - 1];
 	row.push('(index)');
 	for (i = 0; i < keys.length; i++) {
-		row.push(keys[i] + '');
+		row.push(keys[i]);
 	}
 
 	for (j = 0; j < data.length; j++) {
-		entry = data[j]
+		entry = data[j];
 		rows.push([]);
 		row = rows[rows.length - 1];
+		// Push entry for 1st column (index).
 		row.push(objKeys ? objKeys[j] : j);
 		for (i = 0; i < keys.length; i++) {
 			row.push(entry[keys[i]]);
