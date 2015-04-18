@@ -7,7 +7,12 @@
   "keywords": [
     "table",
     "log",
-    "console"
+	"logging",
+    "console",
+	"library",
+	"print",
+	"structure",
+	"debug"
   ],
   "author": "Kushagra Gour",
   "license": "MIT",
