@@ -1,4 +1,4 @@
-konsole.table
+konsole.table [![npm version](https://badge.fury.io/js/konsole.table.svg)](http://badge.fury.io/js/konsole.table)
 =====
 *console.table API polyfill for Node.js*
 ***
