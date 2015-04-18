@@ -109,6 +109,12 @@ function printTable(data, keys) {
 		objKeys,
 		tempData;
 
+	// Simply console.log if an `object` type wasn't passed.
+	if (typeof data !== 'object') {
+		console.log(data);
+		return;
+	}
+
 	// If an object was passed, create data from its properties instead.
 	if (!(data instanceof Array)) {
 		tempData = [];
