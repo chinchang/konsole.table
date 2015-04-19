@@ -21,7 +21,7 @@ Require the module in your code:
 require('konsole.table');
 ```
 
-Then simply use `console.log` just like you would do in browser. 
+Then simply use `console.table` just like you would do in browser. 
 
 [Read More](https://developer.chrome.com/devtools/docs/console#viewing-structured-data) and [more](https://developer.mozilla.org/en-US/docs/Web/API/Console/table) about `console.table`
 
